@@ -31,34 +31,34 @@ public class PropertyController {
 		return service.save(prop);
 	}
 	
-	@GetMapping("/users")
+	@GetMapping("/propeerties")
 	public List<PropertyPojo> getAllProperties(){
 		return service.findAll();
 	}
 	
-	@GetMapping("/user/{id}")
-	public ResponseEntity<PropertyPojo> getEmployeeById(@PathVariable(value="id") Long empid){
+	@GetMapping("/property/{id}")
+	public ResponseEntity<PropertyPojo> getPropertyById(@PathVariable(value="id") Long propertyId){
 		
-		PropertyPojo emp=service.findOne(empid);
+		PropertyPojo pojo=service.findOne(propertyId);
 		
-		if(emp==null) {
+		if(pojo==null) {
 			return ResponseEntity.notFound().build();
 		}
-		return ResponseEntity.ok().body(emp);
+		return ResponseEntity.ok().body(pojo);
 		
 	}
 	
 	
-	@PutMapping("/user/{id}")
-	public ResponseEntity<PropertyPojo> updateEmployee(@PathVariable(value="id") Long empid,@Valid @RequestBody PropertyPojo empDetails){
+	@PutMapping("/property/{id}")
+	public ResponseEntity<PropertyPojo> updateProperty(@PathVariable(value="id") Long propertyId,@Valid @RequestBody PropertyPojo propertyDetails){
 		
-		PropertyPojo emp=service.findOne(empid);
+		PropertyPojo emp=service.findOne(propertyId);
 		if(emp==null) {
 			return ResponseEntity.notFound().build();
 		}
 		
-		PropertyPojo updateEmployee=service.save(emp);
-		return ResponseEntity.ok().body(updateEmployee);
+		PropertyPojo updateProperty=service.save(emp);
+		return ResponseEntity.ok().body(updateProperty);
 		
 		
 		
